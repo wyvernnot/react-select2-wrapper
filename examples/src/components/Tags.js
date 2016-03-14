@@ -14,6 +14,7 @@ export default class Tags extends Component {
         { text: 'documents', id: 3 },
         { text: 'discussion', id: 4 },
       ],
+      data8: []
     };
   }
 
@@ -183,6 +184,39 @@ export default class Tags extends Component {
     );
   }
 
+  renderAsyncOptions() {
+    let loadData8 = e=> this.setState({
+      data8: ["a", "b", "c"]
+    });
+
+    return (
+      <div>
+        AsyncOptions<br/>
+
+        <Select2
+          multiple
+          value={["a","b"]}
+          data={this.state.data8}
+          onChange={e=>console.log($(e.target).val())}
+        />
+
+        —
+
+        <button onClick={loadData8}>load options</button>
+
+        <br/>
+
+        <Select2
+          multiple
+          defaultValue={["a","b"]}
+          data={this.state.data8}
+          onChange={e=>console.log($(e.target).val())}
+        />
+
+      </div>
+    )
+  }
+
 
   render() {
     return (
@@ -201,6 +235,8 @@ export default class Tags extends Component {
         {this.renderDynamicUpdateData()}<br/>
         {/* example 7 */}
         {this.renderOptGroups()}
+        {/* example 8 */}
+        {this.renderAsyncOptions()}
       </div>
     );
   }
